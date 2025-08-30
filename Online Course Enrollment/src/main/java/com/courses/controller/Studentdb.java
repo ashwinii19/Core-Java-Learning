@@ -1,0 +1,69 @@
+package com.courses.controller;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.coruses.model.Student;
+
+public class Studentdb {
+
+    public static List<Student> getAllStudents() {
+        List<Student> list = new ArrayList<>();
+        try (Connection connection = DBConnection.getConnection()) {
+            String selectQuery = "SELECT s.*, c.course_list FROM students s JOIN courses c ON s.id=c.student_id";
+            PreparedStatement stmt = connection.prepareStatement(selectQuery);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Student student = new Student();
+                student.setId(rs.getInt("id"));
+                student.setName(rs.getString("name"));
+                student.setEmail(rs.getString("email"));
+                student.setJoinDate(rs.getDate("join_date"));
+                student.setFeesPaid(rs.getDouble("fees_paid"));
+                student.setCourseList(rs.getString("course_list"));
+                list.add(student);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public static Student getStudentByUsername(String username) {
+        String sql = "SELECT s.id, s.name, s.email, s.join_date, s.fees_paid, c.course_list FROM students s " +
+                     "LEFT JOIN courses c ON s.id = c.student_id " +
+                     "INNER JOIN users u ON u.username = ? WHERE u.role = 'student' AND u.id = s.id";
+        
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                Student student = new Student();
+                student.setId(rs.getInt("id"));
+                student.setName(rs.getString("name"));
+                student.setEmail(rs.getString("email"));
+                student.setJoinDate(rs.getDate("join_date"));
+                student.setFeesPaid(rs.getDouble("fees_paid"));
+                student.setCourseList(rs.getString("course_list"));
+                
+                System.out.println("student: " + student);
+                
+                return student;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+}

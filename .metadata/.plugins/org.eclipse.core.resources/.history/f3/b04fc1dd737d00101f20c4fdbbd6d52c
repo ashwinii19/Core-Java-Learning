@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+</head>
+<body>
+    <jsp:include page="header.jsp" />
+
+    <h3>Enter Student Details</h3>
+    <form action="studentProfile.jsp">
+        Name: <input type="text" name="name" /><br><br>
+        ID: <input type="text" name="id" /><br><br>
+        Course: <input type="text" name="course" /><br><br>
+        Marks (comma separated): <input type="text" name="marks" /><br><br>
+        <input type="submit" value="Submit" />
+    </form>
+
+    <jsp:include page="footer.jsp" />
+</body>
+</html>

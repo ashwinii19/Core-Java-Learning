@@ -1,0 +1,85 @@
+package com.techlabs.EMS.db;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+
+import com.techlabs.EMS.model.Employee;
+
+public class Services {
+
+    public static void insertEmployee(Employee employee) {
+        try {
+            Connection connection = DBConnection.getConnection();
+
+            String insertQuery = "INSERT INTO employees (name, department, email, salary) VALUES (?, ?, ?, ?)";
+
+            PreparedStatement psi = connection.prepareStatement(insertQuery);
+            psi.setString(1, employee.getName());
+            psi.setString(2, employee.getDepartment());
+            psi.setString(3, employee.getEmail());  
+            psi.setDouble(4, employee.getSalary());
+
+            psi.executeUpdate();
+            System.out.println("Employee inserted successfully.");
+        } catch (Exception e) {
+            System.out.println("Error inserting employee: " + e.getMessage());
+        }
+    }
+
+    public static void updateEmployee(Employee employee) {
+        try {
+            Connection connection = DBConnection.getConnection();
+
+            String updateQuery = "UPDATE employees SET name=?, department=?, email=?, salary=? WHERE id=?";
+
+            PreparedStatement psu = connection.prepareStatement(updateQuery);
+            psu.setString(1, employee.getName());
+            psu.setString(2, employee.getDepartment());
+            psu.setString(3, employee.getEmail());   
+            psu.setDouble(4, employee.getSalary());
+            psu.setInt(5, employee.getId());         
+
+            psu.executeUpdate();
+            System.out.println("Employee updated successfully.");
+        } catch (Exception e) {
+            System.out.println("Error updating employee: " + e.getMessage());
+        }
+    }
+
+    public static void deleteEmployee(Employee employee) {
+        try {
+            Connection connection = DBConnection.getConnection();
+
+            String deleteQuery = "DELETE FROM employees WHERE id=?";
+
+            PreparedStatement psd = connection.prepareStatement(deleteQuery);
+            psd.setInt(1, employee.getId());
+
+            psd.executeUpdate();
+            System.out.println("Employee deleted successfully.");
+        } catch (Exception e) {
+            System.out.println("Error deleting employee: " + e.getMessage());
+        }
+    }
+    
+    
+    public static void selectEmployee(Employee employee) {
+        try {
+            Connection connection = DBConnection.getConnection();
+
+            String selectQuery = "select * From employees";
+
+            PreparedStatement pss = connection.prepareStatement(selectQuery);
+            pss.setString(1, employee.getName());
+            pss.setString(2, employee.getDepartment());
+            pss.setString(3, employee.getEmail());  
+            pss.setDouble(4, employee.getSalary());
+
+            pss.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error inserting employee: " + e.getMessage());
+        }
+    }
+}
+

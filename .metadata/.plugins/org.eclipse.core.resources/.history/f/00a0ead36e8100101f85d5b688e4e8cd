@@ -1,0 +1,61 @@
+package com.courses.controller;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.coruses.model.Student;
+
+public class Studentdb {
+
+    public static List<Student> getAllStudents() {
+        List<Student> list = new ArrayList<>();
+        try (Connection connection = DBConnection.getConnection()) {
+            String selectQuery = "SELECT s.*, c.course_list FROM students s JOIN courses c ON s.id=c.student_id";
+            PreparedStatement stmt = connection.prepareStatement(selectQuery);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Student student = new Student();
+                student.setId(rs.getInt("id"));
+                student.setName(rs.getString("name"));
+                student.setEmail(rs.getString("email"));
+                student.setJoinDate(rs.getDate("join_date"));
+                student.setFeesPaid(rs.getDouble("fees_paid"));
+                student.setCourseList(rs.getString("course_list"));
+                list.add(student);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public static Student getStudentByUsername(String username) {
+        try (Connection connection = DBConnection.getConnection()) {
+            String selectQuery = "SELECT s.*, c.course_list FROM students s JOIN courses c ON s.id=c.student_id "
+                    + "WHERE LOWER(s.name) = ?";
+            PreparedStatement ps = connection.prepareStatement(selectQuery);
+            ps.setString(1, username.toLowerCase());
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                Student student = new Student();
+                student.setId(rs.getInt("id"));
+                student.setName(rs.getString("name"));
+                student.setEmail(rs.getString("email"));
+                student.setJoinDate(rs.getDate("join_date"));
+                student.setFeesPaid(rs.getDouble("fees_paid"));
+                student.setCourseList(rs.getString("course_list"));
+                return student;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null; // Ensure you return null if no student is found
+    }
+
+}

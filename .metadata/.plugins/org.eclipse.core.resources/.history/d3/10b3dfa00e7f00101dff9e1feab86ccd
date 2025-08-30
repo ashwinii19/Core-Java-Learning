@@ -1,0 +1,46 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Salary</title>
+</head>
+<body>
+
+	<h2>Employee Salary in Different Currencies:</h2>
+	<!-- Inida Currency -->
+	<fmt:setLocale value="en_IN" />
+	India:
+	<fmt:formatNumber value="${salary}" type="currency" />
+	<br>
+
+	<!-- US Currency -->
+	<fmt:setLocale value="en_US" />
+	US:
+	<fmt:formatNumber value="${salary}" type="currency" />
+	<br>
+
+	<!-- Japanese Yen -->
+	<fmt:setLocale value="ja_JP" />
+	Japan:
+	<fmt:formatNumber value="${salary}" type="currency" />
+	<br>
+
+	<!-- German Euro -->
+	<fmt:setLocale value="de_DE" />
+	Germany:
+	<fmt:formatNumber value="${salary}" type="currency" />
+	<br>
+
+</body>
+</html>
+💡 Explanation: Country Locale Code Currency Output USA en_US $85,000.50
+Japan ja_JP ￥85,001 Germany de_DE 85.000,50 € JSTL automatically applies
+the correct currency symbol, grouping (, or .), and decimal symbol based
+on the locale. ✅ Output (As Expected): yaml Copy code Employee Salary in
+Different Currencies: US: $85,000.50 Japan: ￥85,001 Germany: 85.000,50 €
+Let me know if you want to format it inside a table or add a custom
+currency symbol! Ask ChatGPT

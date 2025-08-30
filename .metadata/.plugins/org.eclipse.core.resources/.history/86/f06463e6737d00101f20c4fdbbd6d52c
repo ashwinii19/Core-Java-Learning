@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<jsp:useBean id="student" class="com.techlabs.studentportal" scope="session" />
+<jsp:setProperty name="student" property="*" />
+<%
+    String marksStr = request.getParameter("marks");
+    if (marksStr != null) {
+        String[] parts = marksStr.split(",");
+        int[] marks = new int[parts.length];
+        for(int i=0; i<parts.length; i++) {
+            marks[i] = Integer.parseInt(parts[i].trim());
+        }
+        student.setMarks(marks);
+    }
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Student Profile</title>
+</head>
+<body>
+ <jsp:include page="header.jsp" />
+
+    <h3>Welcome, <jsp:getProperty name="student" property="name"/> </h3>
+    ID: <jsp:getProperty name="student" property="id"/> <br>
+    Course: <jsp:getProperty name="student" property="course"/> <br><br>
+
+    <a href="marks.jsp">View Marks & Results</a>
+
+    <jsp:include page="footer.jsp" />
+</body>
+</html>

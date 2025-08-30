@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+     <%@page import="com.techlabs.EMS.db.Services, com.techlabs.EMS.model.Employee" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>View Employee</title>
+</head>
+<body>
+	
+	 <%
+        String name = request.getParameter("name");
+        String dept = request.getParameter("department");
+        String email = request.getParameter("email");
+        String salaryStr = request.getParameter("salary");
+        
+        double salary=0.0;
+        
+        if(salaryStr!=null && !salaryStr.trim().isEmpty()){
+        	  salary = Double.parseDouble(salaryStr);
+        }
+       
+        
+       
+       Services.updateEmployee(new Employee(name,dept,email,salary));
+      %>
+	
+</body>
+</html>

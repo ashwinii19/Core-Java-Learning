@@ -1,0 +1,59 @@
+package com.courses.controller;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import com.coruses.model.Student;
+import com.coruses.model.User;
+
+public class Studentdb {
+
+	public static User validateUser(String username, String password) {
+	    String selectQuery = "SELECT * FROM users WHERE username=? AND password=?";
+	    try (Connection connection = DBConnection.getConnection();
+	         PreparedStatement ps = connection.prepareStatement(selectQuery)) {
+	         
+	        ps.setString(1, username);
+	        ps.setString(2, password);
+	        try (ResultSet rs = ps.executeQuery()) {
+	            if (rs.next()) {
+	                User user = new User();
+	                user.setId(rs.getInt("id"));
+	                user.setUsername(rs.getString("username"));
+	                user.setRole(rs.getString("role"));
+	                return user;
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return null;
+	}
+
+	
+	public static Student getStudentByUsername(String username) {
+	    String selectQuery = "SELECT s.*, c.course_list FROM students s JOIN courses c ON s.id=c.student_id WHERE LOWER(s.name)=?";
+	    try (Connection connection = DBConnection.getConnection();
+	         PreparedStatement ps = connection.prepareStatement(selectQuery)) {
+	         
+	        ps.setString(1, username.toLowerCase());
+	        try (ResultSet rs = ps.executeQuery()) {
+	            if (rs.next()) {
+	                Student student = new Student();
+	                student.setId(rs.getInt("id"));
+	                student.setName(rs.getString("name"));
+	                student.setEmail(rs.getString("email"));
+	                student.setJoinDate(rs.getDate("join_date"));
+	                student.setFeesPaid(rs.getDouble("fees_paid"));
+	                student.setCourseList(rs.getString("course_list"));
+	                return student;
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return null;
+	}
+
+}

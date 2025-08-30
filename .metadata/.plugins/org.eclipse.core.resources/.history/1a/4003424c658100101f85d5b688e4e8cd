@@ -1,0 +1,29 @@
+package com.courses.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.coruses.model.User;
+
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
+  protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    String username = req.getParameter("username");
+    String password = req.getParameter("password");
+    User user = Userdb.validateUser(username, password);
+    if (user != null) {
+      req.getSession().setAttribute("user", user);
+      if ("admin".equals(user.getRole())) res.sendRedirect("admin");
+      else res.sendRedirect("student");
+    } else {
+      req.setAttribute("error", "Invalid credentials");
+      req.getRequestDispatcher("login.jsp").forward(req, res);
+    }
+  }
+}
+

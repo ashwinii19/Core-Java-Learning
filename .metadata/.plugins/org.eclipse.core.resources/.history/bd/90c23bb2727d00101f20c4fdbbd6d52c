@@ -1,0 +1,5 @@
+package com.techlabs.studentportal;
+
+public class Student {
+
+}

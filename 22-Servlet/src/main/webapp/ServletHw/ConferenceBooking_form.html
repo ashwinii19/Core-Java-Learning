@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conference Booking</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            margin-top: 20px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #219150;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Conference Booking</h2>
+        <form action="/22-Servlet/bookConference" method="post">
+            <label for="name">Attendee Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="seats">Number of Seats</label>
+            <input type="number" id="seats" name="seats" min="1" max="5" required>
+
+            <label for="date">Date of Attendance</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="session">Session Type</label>
+            <select id="session" name="session" required>
+                <option value="Technical">Technical</option>
+                <option value="Workshop">Workshop</option>
+                <option value="Networking">Networking</option>
+            </select>
+
+            <input type="submit" value="Book Now">
+        </form>
+    </div>
+</body>
+</html>

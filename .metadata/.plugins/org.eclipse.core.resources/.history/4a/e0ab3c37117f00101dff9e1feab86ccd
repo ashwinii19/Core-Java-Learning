@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Date Formatting</title>
+</head>
+<body>
+
+	<%
+		java.util.Date today = new java.util.Date();
+		request.setAttribute("today", today);
+	%>
+	
+	<h2>Today's Date in Different Styles:</h2>
+	
+	
+	<p>Short: <fmt:formatDate value="${today } type="Date" dateStyle="short"/>
+</body>
+</html>

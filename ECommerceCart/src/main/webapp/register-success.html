@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Success</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .success-container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            animation: fadeIn 0.7s ease-in-out;
+        }
+
+        .success-container h2 {
+            color: #222;
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+        .success-container p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .success-container button {
+            background: linear-gradient(to right, #43cea2, #185a9d);
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .success-container button:hover {
+            background: linear-gradient(to right, #2b5876, #4e4376);
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <h2>Registration Successful!</h2>
+        <p>You can now login with your credentials.</p>
+        <button type="button" onclick="window.location.href='index.html'">OK</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!-- <!DOCTYPE html> -->
+<!-- <html> -->
+<!-- <head> -->
+<!--     <title>Admin Panel</title> -->
+<!--     <link rel="stylesheet" href="css/style.css"> -->
+<!-- </head> -->
+<!-- <body> -->
+<!--     <form action="admin" method="post"> -->
+<!--         <h2>Add Product</h2> -->
+<!--         <label>Name:</label> -->
+<!--         <input type="text" name="name" required> -->
+<!--         <label>Price:</label> -->
+<!--         <input type="number" name="price" step="0.01" required> -->
+<!--         <label>Quantity:</label> -->
+<!--         <input type="number" name="quantity" required> -->
+<!--         <input type="submit" name="action" value="Add Product"> -->
+<!--     </form> -->
+
+<!--     <form action="admin" method="post"> -->
+<!--         <h2>Delete Product</h2> -->
+<!--         <label>Product ID:</label> -->
+<!--         <input type="number" name="id" required> -->
+<!--         <input type="submit" name="action" value="Delete Product"> -->
+<!--     </form> -->
+<!-- </body> -->
+<!-- </html> -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <form action="admin" method="post">
+        <h2>Admin Panel</h2>
+
+        <label>Product Name:</label>
+        <input type="text" name="name" required>
+
+        <label>Price:</label>
+        <input type="number" name="price" step="0.01" required>
+
+        <label>Quantity:</label>
+        <input type="number" name="quantity" required>
+
+        <input type="submit" name="action" value="Add Product">
+        <input type="submit" name="action" value="Delete Product">
+
+        <p><a href="logout">Logout</a></p>
+    </form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+package com.coruses.model;
+
+import java.sql.Connection;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.courses.db.DBConnection;
+import java.sql.ResultSet;
+
+public class Studentdb {
+
+	public static List<Student> getAllStudents(){
+		List<Student> list = new ArrayList<>();	
+		try {
+			Connection connection = DBConnection.getConnection();
+			String selectQuery = "SELECT s.*, c.course_list FROM students s JOIN courses c ON s.id=c.student_id";
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(selectQuery);
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return list;
+	}
+}

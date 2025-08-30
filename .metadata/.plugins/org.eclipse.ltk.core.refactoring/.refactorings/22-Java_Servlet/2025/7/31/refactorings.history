@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move package &apos;com.techlabs.servlet.test&apos; to &apos;23-New Servlet/src/main/java&apos;&#x0D;&#x0A;- Original project: &apos;22-Java_Servlet&apos;&#x0D;&#x0A;- Destination element: &apos;23-New Servlet/src/main/java&apos;&#x0D;&#x0A;- Original element: &apos;22-Java_Servlet/src/main/java/com.techlabs.servlet.test&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move package" destination="=23-New Servlet/src\/main\/java" element1="/src\/main\/java&lt;com.techlabs.servlet.test" flags="589830" fragments="1" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1753781493941" version="1.0"/>
+</session>

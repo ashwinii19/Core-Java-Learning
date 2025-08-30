@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Currency Converter</title>
+<style>
+body {
+	font-family: 'Segoe UI', sans-serif;
+	background: linear-gradient(to right, #83a4d4, #b6fbff);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.converter-container {
+	background-color: white;
+	padding: 30px 40px;
+	border-radius: 15px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	text-align: center;
+}
+
+h2 {
+	margin-bottom: 20px;
+	color: #333;
+}
+
+input, select, button {
+	width: 100%;
+	padding: 10px;
+	margin-top: 10px;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	font-size: 16px;
+}
+
+button {
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #45a049;
+}
+
+.footer {
+	margin-top: 15px;
+	font-size: 12px;
+	color: gray;
+}
+</style>
+</head>
+<body>
+
+	<div class="converter-container">
+		<h2>Currency Converter</h2>
+		<form action="../aaa" method="get">
+
+			<label for="amount">Amount:</label> <input type="number" id="amount"
+				name="Amount" required> <label for="from">From:</label> <select
+				id="from" name="From" required>
+				<option value="rupees">Rupees</option>
+				<option value="usd">USD</option>
+			</select> <label for="to">To:</label> <select id="to" name="To" required>
+				<option value="usd">USD</option>
+				<option value="rupees">Rupees</option>
+			</select>
+
+			<button type="submit">Convert</button>
+		</form>
+		<div class="footer">Exchange rate: 1 USD = 86.78 INR</div>
+	</div>
+
+</body>
+</html>
+

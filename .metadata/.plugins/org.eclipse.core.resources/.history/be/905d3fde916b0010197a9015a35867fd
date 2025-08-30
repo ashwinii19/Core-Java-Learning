@@ -1,0 +1,432 @@
+package com.techlabs.SmartBankingSystem.test;
+
+import java.time.LocalDateTime;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
+import com.techlabs.SmartBankingSystem.model.AccountDAO;
+import com.techlabs.SmartBankingSystem.model.AccountType;
+import com.techlabs.SmartBankingSystem.model.Status;
+
+public class SmartBankingSystem {
+
+	public static void main(String[] args) {
+
+		Scanner scanner = new Scanner(System.in);
+		boolean exit = false;
+
+		AccountDAO accountdao = new AccountDAO();
+
+		System.out.println("========== Welcome to Smart Banking System ==========");
+
+		while (!exit) {
+			System.out.println("--------------------------------------------------");
+			System.out.println("Hello, please choose an account to proceed:");
+			System.out.println("1. Create Account");
+			System.out.println("2. Check balance");
+			System.out.println("3. Deposit Money");
+			System.out.println("4. Withdraw Money");
+			System.out.println("5. Transfer Money");
+			System.out.println("6. Transaction History");
+			System.out.println("7. Close Account");
+			System.out.println("8. Exit");
+			System.out.print("Enter your choice: ");
+
+			try {
+				if (scanner.hasNext()) {
+					int choice = scanner.nextInt();
+					scanner.nextLine();
+
+					switch (choice) {
+					case 1:
+						System.out.println("--- Let's create a new account. ---");
+
+						String name;
+						while (true) {
+							System.out.println("Enter the user's name:");
+							name = scanner.nextLine();
+							if (Pattern.matches("^[a-zA-Z ]+$", name)) {
+								break;
+							} else {
+								System.out.println("Invalid name. Please enter only letters and spaces.");
+							}
+						}
+
+						System.out.println("Enter the user's email:");
+						String email = scanner.nextLine();
+
+						String phone;
+						while (true) {
+							System.out.println("Enter the user's Phone Number:");
+							phone = scanner.nextLine().trim();
+							if (phone.matches("\\d{10}")) {
+								break;
+							} else {
+								System.out.println("Invalid phone number. Please enter exactly 10 digits.");
+							}
+						}
+
+						System.out.println("Enter the user's permanent Address:");
+						String address = scanner.nextLine();
+
+						int customer_id = accountdao.createCustomer(name, email, phone, address);
+
+						if (customer_id != -1) {
+							AccountType accountType = null;
+
+							int accounttype;
+							while (true) {
+								System.out.println("Enter Account Type \n1. SAVINGS \n2. CURRENT \n3. FIXED ");
+								if (scanner.hasNextInt()) {
+									accounttype = scanner.nextInt();
+									scanner.nextLine();
+
+									switch (accounttype) {
+									case 1:
+										accountType = AccountType.SAVINGS;
+										break;
+
+									case 2:
+										accountType = AccountType.CURRENT;
+										break;
+
+									case 3:
+										accountType = AccountType.FIXED;
+										break;
+
+									default:
+										System.out.println("Invalid option. Please enter 1, 2 or 3.");
+										continue;
+									}
+									break;
+
+								} else {
+									System.out.println("Invalid input. Please enter a number.");
+									scanner.nextLine();
+								}
+							}
+
+							double initialbalance = 0.0;
+							while (true) {
+								System.out.println("Enter the initial deposit amount:");
+								if (scanner.hasNextDouble()) {
+									initialbalance = scanner.nextDouble();
+									scanner.nextLine();
+
+									if (initialbalance <= 0) {
+										System.out.println("Amount cannot be negative. Try again.");
+										continue;
+									}
+									break;
+								} else {
+									System.out.println("Invalid input. Please enter a number.");
+									scanner.nextLine();
+								}
+							}
+
+							Status status = null;
+
+							int stats;
+							while (true) {
+								System.out.println("Enter Status Type \n1. ACTIVE \n2. INACTIVE ");
+								if (scanner.hasNextInt()) {
+									stats = scanner.nextInt();
+									scanner.nextLine();
+
+									switch (stats) {
+									case 1:
+										status = Status.ACTIVE;
+										break;
+
+									case 2:
+										status = Status.INACTIVE;
+										break;
+									default:
+										System.out.println("Invalid option. Please enter 1 or 2.");
+										continue;
+									}
+									break;
+								} else {
+									System.out.println("Invalid input. Please enter a number.");
+									scanner.nextLine();
+								}
+							}
+
+							LocalDateTime dateCreated = LocalDateTime.now();
+							String accNumber = accountdao.createAccount(customer_id, accountType, initialbalance,
+									status, dateCreated);
+						}
+						break;
+						
+						
+						
+						
+						
+						
+						
+
+					case 2:
+						System.out.println("--- Checking Account Balance ---");
+						while (true) {
+							System.out.println("Please enter the Customer ID: ");
+							if (scanner.hasNextInt()) {
+								int checkcustomerid = scanner.nextInt();
+								scanner.nextLine();
+
+								if (checkcustomerid < 0) {
+									System.out.println("Customer Id cannot be negative. Try again.");
+									continue;
+								}
+
+								accountdao.checkBalance(checkcustomerid);
+
+								break;
+							} else {
+								System.out.println("Invalid input. Please enter a Customer Id correct.");
+								scanner.nextLine();
+							}
+						}
+						break;
+						
+						
+						
+						
+						
+						
+						
+
+					case 3:
+						System.out.println("--- Deposit Money ---");
+
+						while (true) {
+							System.out.println("Please enter the Customer ID: ");
+							if (scanner.hasNextInt()) {
+								int depositcustomerid = scanner.nextInt();
+								scanner.nextLine();
+
+								if (depositcustomerid < 0) {
+									System.out.println("Customer Id cannot be negative. Try again.");
+									continue;
+								}
+
+								System.out.println("Please enter the amount to deposit: ");
+								if (scanner.hasNextDouble()) {
+									double depositamount = scanner.nextDouble();
+									scanner.nextLine();
+
+									if (depositamount <= 0) {
+										System.out.println("Amount cannot be negative. Try again.");
+										continue;
+									}
+
+									accountdao.depositMoney(depositcustomerid, depositamount);
+									break;
+								}
+							} else {
+								System.out.println("Invalid input. Please enter a Customer Id correct.");
+								scanner.nextLine();
+							}
+
+						}
+						break;
+						
+						
+						
+						
+						
+						
+						
+						
+
+					case 4:
+						System.out.println("--- Withdraw Money ---");
+
+						while (true) {
+							System.out.println("Please enter the Customer ID: ");
+							if (scanner.hasNextInt()) {
+								int withdrawcustomerid = scanner.nextInt();
+								scanner.nextLine();
+
+								if (withdrawcustomerid < 0) {
+									System.out.println("Customer Id cannot be negative. Try again.");
+									continue;
+								}
+
+								System.out.println("Please enter the amount to withdraw: ");
+								if (scanner.hasNextDouble()) {
+									double withdrawamount = scanner.nextDouble();
+									scanner.nextLine();
+
+									if (withdrawamount <= 0) {
+										System.out.println("Amount cannot be negative. Try again.");
+										continue;
+									}
+									accountdao.withdrawMoney(withdrawcustomerid, withdrawamount);
+									break;
+								}
+
+							} else {
+								System.out.println("Invalid input. Please enter a Customer Id correct.");
+								scanner.nextLine();
+							}
+						}
+						break;
+						
+						
+						
+						
+						
+						
+
+					case 5:
+						System.out.println("--- Transfer Money ---");
+						boolean transferDone = false;
+
+						while (!transferDone) {
+							System.out.println("Please enter the Customer ID of sender: ");
+							if (scanner.hasNextInt()) {
+								int fromId = scanner.nextInt();
+								scanner.nextLine();
+
+								if (fromId < 0) {
+									System.out.println("Customer Id cannot be negative. Try again.");
+									continue;
+								}
+
+								System.out.println("Please enter the Customer ID of receiver: ");
+								if (scanner.hasNextInt()) {
+									int toId = scanner.nextInt();
+									scanner.nextLine();
+
+									if (toId < 0) {
+										System.out.println("Customer Id cannot be negative. Try again.");
+										continue;
+									}
+
+									if (fromId == toId) {
+										System.out.println("Cannot transfer to the same account.");
+										break;
+									}
+
+									System.out.println("Please enter the amount to transfer: ");
+									if (scanner.hasNextDouble()) {
+										double transferamount = scanner.nextDouble();
+										scanner.nextLine();
+
+										if (transferamount <= 0) {
+											System.out.println("Amount cannot be negative. Try again..");
+											continue;
+										}
+
+										accountdao.transferMoney(fromId, toId, transferamount);
+										
+										transferDone = true;
+										break;
+									} else {
+										System.out.println("Invalid input. Please enter a number.");
+										scanner.nextLine();
+									}
+
+									break;
+								} else {
+									System.out.println("Invalid input. Please enter a number.");
+									scanner.nextLine();
+								}
+								break;
+							} else {
+								System.out.println("Invalid input. Please enter a number.");
+								scanner.nextLine();
+							}
+						}
+
+						break;
+
+						
+						
+						
+						
+						
+						
+						
+					case 6:
+						System.out.println("--- Transaction History ---");
+						while (true) {
+							System.out.println("Please enter the Customer ID: ");
+							if (scanner.hasNextInt()) {
+								int transactionId = scanner.nextInt();
+								
+								scanner.nextLine();
+
+								if (transactionId < 0) {
+									System.out.println("Customer Id cannot be negative. Try again.");
+									continue;
+								}
+								accountdao.transactionHistory(transactionId);
+								break;
+							}else {
+								System.out.println("Invalid input. Please enter a number.");
+								scanner.nextLine();
+							}
+						}
+						
+						break;
+
+						
+						
+						
+						
+						
+					case 7:
+						System.out.println("--- Close Account ---");
+
+						while (true) {
+							System.out.println("Please enter the Customer ID: ");
+							if (scanner.hasNextInt()) {
+								int closecustomerid = scanner.nextInt();
+								scanner.nextLine();
+
+								if (closecustomerid < 0) {
+									System.out.println("Customer Id cannot be negative. Try again.");
+									continue;
+								}
+
+								accountdao.closeAccount(closecustomerid);
+								break;
+							} else {
+								System.out.println("Invalid input. Please enter a Customer Id correct.");
+								scanner.nextLine();
+							}
+						}
+
+						break;
+
+						
+						
+						
+						
+						
+					case 8:
+						System.out.println("\nThank you, Exiting... ");
+						exit = true;
+						break;
+
+					default:
+						System.out.println("Invalid choice. Please try again.");
+						break;
+
+					}
+				} else {
+					System.out.println("Please enter a valid number.");
+					scanner.next();
+				}
+
+			} catch (Exception e) {
+				System.out.println("Invalid input. Please enter a number.");
+				scanner.nextLine();
+			}
+		}
+
+		scanner.close();
+	}
+
+}

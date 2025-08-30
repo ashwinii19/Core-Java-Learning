@@ -1,0 +1,53 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Online Course</title>
+<style>
+        body {
+            background-color: #e9f0f7;
+            font-family: Arial, sans-serif;
+        }
+        .dashboard {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 15px;
+        }
+        .student {
+            border-bottom: 1px solid #ccc;
+            padding: 15px 0;
+        }
+        .warning {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+
+	<h3>Online Course Enrollment</h3>
+	
+	<sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost:3306/online_course"
+	user="root" password="admin#123"/>
+	
+	<sql:query var="result" dataSource="${db}">
+		 SELECT s.id, s.name, s.email, s.join_date, s.fees_paid, c.course_list
+        FROM students s
+        JOIN courses c ON s.id = c.student_id
+	</sql:query>
+	
+	<c:forEach var="student" items="${result.rows }">
+	<p>ID: ${student.id}</p>
+    <p>Name: ${student.name}</p>
+    <p>Email: ${student.email}</p>
+	
+	</c:forEach>
+</body>
+</html>

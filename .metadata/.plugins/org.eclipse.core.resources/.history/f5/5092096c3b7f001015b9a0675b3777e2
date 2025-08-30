@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Management System</title>
+</head>
+<body>
+	<h1>Welcome</h1>
+	<p>Choose an action: </p>
+	
+	 <a href="add.html">
+	<button type="button">Add</button>
+	</a>
+	
+	<a href:"">
+	<button type="button">View</button>
+	</a>
+</body>
+</html>

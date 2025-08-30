@@ -1,0 +1,105 @@
+body {
+margin: 0;
+font-family: 'Poppins', sans-serif;
+background: linear-gradient(120deg, #1f1c2c, #928dab);
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.login-body {
+background: linear-gradient(to right, #373b44, #4286f4);
+}
+
+.error-body {
+background: #2c3e50;
+}
+
+.login-box,
+.error-box {
+background: #ffffff;
+padding: 40px 30px;
+border-radius: 15px;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+text-align: center;
+width: 350px;
+}
+
+.login-box h2,
+.error-box h3 {
+margin-bottom: 20px;
+color: #2c3e50;
+}
+
+form {
+display: flex;
+flex-direction: column;
+margin-top: 10px;
+}
+
+label {
+text-align: left;
+margin-bottom: 6px;
+font-weight: 500;
+color: #333;
+}
+
+input[type="text"],
+input[type="password"] {
+width: 100%;
+padding: 12px;
+margin-bottom: 15px;
+border: 1px solid #ddd;
+border-radius: 8px;
+font-size: 14px;
+}
+
+input[type="submit"],
+button,
+.btn {
+width: 100%;
+background-color: #6c5ce7;
+color: white;
+border: none;
+padding: 12px;
+border-radius: 8px;
+font-weight: bold;
+cursor: pointer;
+transition: background 0.3s ease;
+text-decoration: none;
+}
+
+input[type="submit"]:hover,
+button:hover,
+.btn:hover {
+background-color: #4834d4;
+}
+
+.back-btn {
+margin-top: 20px;
+}
+
+.error {
+color: red;
+text-align: center;
+margin-bottom: 15px;
+font-weight: bold;
+font-size: 14px;
+}
+
+p {
+text-align: center;
+color: #000;
+margin-top: 15px;
+}
+
+a {
+color: #6c5ce7;
+font-weight: bold;
+text-decoration: none;
+}
+
+a:hover {
+text-decoration: underline;
+}

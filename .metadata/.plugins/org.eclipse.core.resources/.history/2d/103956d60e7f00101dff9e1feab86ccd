@@ -1,0 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Salary</title>
+</head>
+<body>
+
+	<%
+    double salary = 85000.50;
+    request.setAttribute("salary", salary);
+	%>
+	
+	
+	<h2>Employee Salary in Different Currencies:</h2>
+	<!-- Inida Currency -->
+	<fmt:setLocale value="en_IN" />
+	India:
+	<fmt:formatNumber value="${salary}" type="currency" />
+	<br>
+
+	<!-- US Currency -->
+	<fmt:setLocale value="en_US" />
+	US:
+	<fmt:formatNumber value="${salary}" type="currency" />
+	<br>
+
+	<!-- Japanese Yen -->
+	<fmt:setLocale value="ja_JP" />
+	Japan:
+	<fmt:formatNumber value="${salary}" type="currency" />
+	<br>
+
+	<!-- German Euro -->
+	<fmt:setLocale value="de_DE" />
+	Germany:
+	<fmt:formatNumber value="${salary}" type="currency" />
+	<br>
+
+</body>
+</html>

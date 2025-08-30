@@ -1,0 +1,33 @@
+package com.courses.controller;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.coruses.model.Student;
+
+@WebServlet("/student")
+public class StudentServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        // Fetch all students from the database
+        List<Student> students = Studentdb.getAllStudents();
+
+        // Print the list to debug
+        System.out.println("Students: " + students.size());  // Debugging line
+
+        // If there are no students, show a message
+        if (students.isEmpty()) {
+            req.setAttribute("message", "No student data available.");
+        } else {
+            req.setAttribute("students", students);  // Pass list of students to JSP
+        }
+
+        // Forward to the student dashboard JSP
+        req.getRequestDispatcher("/studentDashboard.jsp").forward(req, res);
+    }
+}

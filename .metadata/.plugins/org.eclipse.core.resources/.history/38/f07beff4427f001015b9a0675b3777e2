@@ -1,0 +1,67 @@
+package com.techlabs.EMS.db;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+
+import com.techlabs.EMS.model.Employee;
+
+public class Services {
+
+	public static void insertEmployee(Employee employee) {
+
+		try {
+			Connection connection = DBConnection.getConnection();
+
+			String insertQuery = "Insert into employees (name, department, email, salary) Values (?,?,?,?)";
+
+			PreparedStatement psi = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+			psi.setString(1, employee.getName());
+			psi.setString(2, employee.getDepartment());
+			psi.setString(3, employee.getName());
+			psi.setDouble(4, employee.getSalary());
+
+			psi.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+	public static void updateEmployee(Employee employee) {
+
+		try {
+			Connection connection = DBConnection.getConnection();
+
+			String updateQuery = "Update employees SET (name, department, email, salary) WHERE id = ?";
+
+			PreparedStatement psu = connection.prepareStatement(updateQuery, Statement.RETURN_GENERATED_KEYS);
+			psu.setString(1, employee.getName());
+			psu.setString(2, employee.getDepartment());
+			psu.setString(3, employee.getName());
+			psu.setDouble(4, employee.getSalary());
+
+			psu.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	public static void deleteEmployee(Employee employee) {
+
+		try {
+			Connection connection = DBConnection.getConnection();
+
+			String deleteQuery = "delete FROM employees (name, department, email, salary) WHERE id = ?";
+
+			PreparedStatement psd = connection.prepareStatement(deleteQuery, Statement.RETURN_GENERATED_KEYS);
+			psd.setString(1, employee.getName());
+			psd.setString(2, employee.getDepartment());
+			psd.setString(3, employee.getName());
+			psd.setDouble(4, employee.getSalary());
+
+			psu.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+}

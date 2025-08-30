@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Salary</title>
+</head>
+<body>
+	
+	<h2>Employee Salary</h2>
+	<c:set var="salary" value="40000"></c:set>
+	<c:choose>
+		<c:when test="${salary > 50000 }">Eligible for 10% Bonus</c:when>
+		<c:when test="${salary >= 30000 && salary <= 50000 }">Eligible for 5% Bonus</c:when>
+		<c:otherwise>No Bonus</c:otherwise>
+	</c:choose>
+</body>
+</html>

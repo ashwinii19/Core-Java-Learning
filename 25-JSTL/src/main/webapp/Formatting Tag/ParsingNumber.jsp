@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<html>
+<head>
+    <title>Number Formatting</title>
+</head>
+<body>
+
+<fmt:parseNumber var="num" type="number" value="12345.6789" />
+
+<h2>Formatted Numbers:</h2>
+
+<p>Original: <fmt:formatNumber value="${num}" /></p>
+
+<p>Two Decimals: <fmt:formatNumber value="${num}" minFractionDigits="2" maxFractionDigits="2" /></p>
+
+<fmt:setLocale value="en_IN" />
+<p>Currency (INR): <fmt:formatNumber value="${num}" type="currency" /></p>
+
+</body>
+</html>

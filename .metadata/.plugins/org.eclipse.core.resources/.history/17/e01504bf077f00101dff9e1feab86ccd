@@ -1,0 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Library System</title>
+</head>
+<body>
+
+	<h2>Library Management System</h2>
+	<c:set var="username" value="Ashwini" scope="session"/>welcome! ${username}<hr>
+	
+	<c:remove var="username" scope="session"/>After Logout: ${username}<br>
+</body>
+</html>

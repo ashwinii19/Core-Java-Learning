@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Product Feedback</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	background: linear-gradient(to right, #ffe29f, #ffa99f);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.feedback-container {
+	background-color: #fff;
+	padding: 30px;
+	border-radius: 10px;
+	width: 400px;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-container h2 {
+	text-align: center;
+	color: #333;
+	margin-bottom: 20px;
+}
+
+label {
+	display: block;
+	margin-bottom: 6px;
+	color: #444;
+}
+
+input[type="text"], textarea, select {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 15px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+}
+
+textarea {
+	resize: vertical;
+	height: 100px;
+}
+
+input[type="submit"] {
+	width: 100%;
+	background-color: #ff6b6b;
+	color: white;
+	padding: 12px;
+	border: none;
+	border-radius: 6px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+input[type="submit"]:hover {
+	background-color: #e25555;
+}
+</style>
+</head>
+<body>
+	<div class="feedback-container">
+		<h2>Product Feedback</h2>
+		<form method="post" action="/22-Servlet/feedback">
+			<label for="productId">Product ID:</label> <input type="text"
+				id="productId" name="productId" required /> <label for="rating">Rating
+				(1 to 5):</label> <select id="rating" name="rating" required>
+				<option value="">--Select Rating--</option>
+				<option value="1">1 - Poor</option>
+				<option value="2">2 - Fair</option>
+				<option value="3">3 - Good</option>
+				<option value="4">4 - Very Good</option>
+				<option value="5">5 - Excellent</option>
+			</select> <label for="review">Review:</label>
+			<textarea id="review" name="review"
+				placeholder="Write your feedback here..." required></textarea>
+
+			<input type="submit" value="Submit Feedback" />
+		</form>
+	</div>
+</body>
+</html>

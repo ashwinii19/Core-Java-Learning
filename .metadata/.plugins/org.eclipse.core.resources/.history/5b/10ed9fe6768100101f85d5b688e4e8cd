@@ -1,0 +1,53 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Student Dashboard</title>
+</head>
+<body>
+
+    <h2>All Students Dashboard</h2>
+
+    <!-- Check if the student list is not empty -->
+    <c:if test="${not empty students}">
+        <!-- Loop through each student -->
+        <c:forEach var="student" items="${students}">
+            <div>
+                <h3>Student: ${student.name}</h3>
+                <p><strong>Email:</strong> ${student.email}</p>
+                <p><strong>Institutional Email:</strong> ${fn:contains(student.email, 'edu') ? 'Yes' : 'No'}</p>
+                <p><strong>Join Date:</strong> 
+                    <fmt:formatDate value="${student.joinDate}" pattern="MMM d, yyyy"/>
+                </p>
+                <p><strong>Fees Paid:</strong> 
+                    <fmt:setLocale value="en_IN"/>
+                    <fmt:formatNumber value="${student.feesPaid}" type="currency"/> 
+                </p>
+
+                <!-- Check if fees are less than 1000 -->
+                <c:if test="${student.feesPaid lt 1000}">
+                    <p style="color:red;">Fees not fully paid!</p>
+                </c:if>
+
+                <p><strong>Courses Enrolled:</strong></p>
+                <ul>
+                    <c:forEach var="course" items="${fn:split(student.courseList, ',')}">
+                        <li>${course}</li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:forEach>
+    </c:if>
+
+    <c:if test="${empty students}">
+        <p>No student data available.</p>
+    </c:if>
+
+</body>
+</html>

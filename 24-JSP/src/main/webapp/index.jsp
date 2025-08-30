@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+</head>
+<body>
+    <jsp:include page="header.jsp"/>
+
+    <h3>Enter Student Details</h3>
+    <form action="profile.jsp" method="get">
+        <input type="text" name="name" placeholder="Enter Name"
+       pattern="^[A-Za-z ]+$" title="Name must contain only letters and spaces" required />
+        
+
+        <input type="text" name="rollNo" placeholder="Enter Roll No" required/>
+        
+         <input type="number" name="math" placeholder="Math Marks" min="0" max="100" required/>
+        <input type="number" name="science" placeholder="Science Marks" min="0" max="100" required/>
+        <input type="number" name="english" placeholder="English Marks" min="0" max="100" required/>
+
+        <input type="submit" value="Generate Report"/>
+    </form>
+
+    <jsp:include page="footer.jsp"/>
+</body>
+</html>

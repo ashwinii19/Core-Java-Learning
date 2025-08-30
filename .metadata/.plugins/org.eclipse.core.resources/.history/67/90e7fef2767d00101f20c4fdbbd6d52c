@@ -1,0 +1,56 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Result</title>
+</head>
+<body>
+    <jsp:include page="header.jsp"/>
+
+    <h3>Final Report Card</h3>
+    <%
+        String name = request.getParameter("name");
+        String rollNo = request.getParameter("rollNo");
+        int math = Integer.parseInt(request.getParameter("math"));
+        int science = Integer.parseInt(request.getParameter("science"));
+        int english = Integer.parseInt(request.getParameter("english"));
+
+        int total = math + science + english;
+        double avg = total / 3.0;
+
+        String status;
+        if (math < 35 || science < 35 || english < 35) {
+            status = "Fail";
+        } else if (avg >= 90) {
+            status = "A+";
+        } else if (avg >= 80) {
+            status = "A";
+        } else if (avg >= 70) {
+            status = "B";
+        } else if (avg >= 60) {
+            status = "C";
+        } else {
+            status = "Fail";
+        }
+    %>
+
+    <p><strong>Name:</strong> <%= name %></p>
+    <p><strong>Roll No:</strong> <%= rollNo %></p>
+    <p><strong>Math:</strong> <%= math %></p>
+    <p><strong>Science:</strong> <%= science %></p>
+    <p><strong>English:</strong> <%= english %></p>
+
+    <h3>Results</h3>
+    <p><strong>Total Marks:</strong> <%= total %></p>
+    <p><strong>Average Marks:</strong> <%= String.format("%.2f", avg) %></p>
+    <p><strong>Final Result:</strong> 
+        <span style="color:<%= status.equals("Fail") ? "red" : "green" %>;">
+            <%= status %>
+        </span>
+    </p>
+
+    <jsp:include page="footer.jsp"/>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Teacher param</title>
+</head>
+<body>
+
+
+	<sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost:3306/school_db"
+	user="root" password="admin#123"/>
+
+	<sql:query var="teacherList" dataSource="${db}">
+		SELECT name, subject FROM teachers WHERE subject = ?
+		<sql:param value="${param.subject}" />
+	</sql:query>
+
+	<h3>Teachers for Subject: <c:out value="${param.subject}" /></h3>
+
+	<ul>
+	<c:forEach var="teacher" items="${teacherList.rows}">
+		<li>${teacher.name} - ${teacher.subject}</li>
+	</c:forEach>
+	</ul>
+	
+</body>
+</html>

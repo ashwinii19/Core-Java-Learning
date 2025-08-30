@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.techlabs.executionservice.test.ExecutorServiceDemo&apos; to &apos;ExecutorServiceRunnableDemo&apos;&#x0D;&#x0A;- Original project: &apos;16-Multithreading&apos;&#x0D;&#x0A;- Original element: &apos;com.techlabs.executionservice.test.ExecutorServiceDemo&apos;&#x0D;&#x0A;- Renamed element: &apos;com.techlabs.executionservice.test.ExecutorServiceRunnableDemo&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;ExecutorServiceDemo&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.techlabs.executionservice.test{ExecutorServiceDemo.java[ExecutorServiceDemo" matchStrategy="1" name="ExecutorServiceRunnableDemo" qualified="false" references="true" similarDeclarations="false" stamp="1752227392641" textual="false" version="1.0"/>
+</session>

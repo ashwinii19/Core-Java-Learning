@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+ 
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee List</title>
+</head>
+<body>
+
+	<sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost:3306/company_db"
+	user="root" password="admin#123"/>
+	
+	<sql:query var="emp" dataSource="${db }" >
+	SELECT * FROM employees WHERE id = ?;
+	<sql:param value="${param.id }"></sql:param>
+	</sql:query>
+	
+	<h2>Employee Records</h2>
+	
+	<c:forEach var="row" items="${emp.rows}">
+	<p>ID : ${row.id }</p>
+	<p>Name : ${row.name }</p>
+	<p>Department : ${row.department }</p>
+	</c:forEach>
+
+	
+	
+</body>
+</html>

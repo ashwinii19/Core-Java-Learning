@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Exam Result</title>
+</head>
+<body>
+
+	<h2>Exam Answer</h2>
+	<c:set var="answer" value="${['A', 'B', 'C', 'D', 'A'] }"></c:set>
+	<c:set var="correct" value="${['A', 'C', 'B', 'B', 'A'] }"></c:set>
+	
+	<c:forEach var="ans" items="${answer }" varStatus="status">
+		Q${status.count }: Your Answer: ${ans }
+		<c:if test="${ans == correct[status.index] }">Correct<br></c:if>
+		<c:if test="${ans != correct[status.index] }">Wrong<br></c:if>
+	</c:forEach>
+</body>
+</html>

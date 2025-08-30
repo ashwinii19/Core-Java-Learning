@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Bank Account Balance</title>
+</head>
+<body>
+	
+	<fmt:setLocale value="en_US"/>
+	<%
+		double balance = 12500.75;
+		request.setAttribute("balance", balance);
+	%>
+	
+	<h2>Account Balance:</h2>
+	<p>Your Balance is: <fmt:formatNumber value="${balance } type="currency"> </fmt:formatNumber></p>
+</body>
+</html>

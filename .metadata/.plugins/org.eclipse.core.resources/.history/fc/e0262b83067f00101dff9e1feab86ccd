@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Online Course Portal</title>
+</head>
+<body>
+
+	<h2>Online Course Portal</h2>
+	<c:set var="course" value="${['Java', 'Spring', 'Python', 'Angular'] }"></c:set>
+	
+	<c:forEach var="corse" items="${course }" varStatus="status">
+		  ${status.count}. ${corse}
+            <c:if test="${corse == 'Spring'}">
+                <strong>(Most Popular)</strong><br>
+            </c:if>
+	</c:forEach>
+</body>
+</html>

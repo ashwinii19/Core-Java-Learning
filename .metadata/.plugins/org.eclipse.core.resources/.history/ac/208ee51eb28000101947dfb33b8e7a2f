@@ -1,0 +1,74 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.techlabs.EMS.db.Services, com.techlabs.EMS.model.Employee" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Employee</title>
+</head>
+<body>
+
+<%
+    String idStr = request.getParameter("id");
+    Employee empToEdit = null;
+
+    if (idStr != null) {
+        int id = Integer.parseInt(idStr);
+        List<Employee> employees = Services.getAllEmployees();
+
+        for (Employee emp : employees) {
+            if (emp.getId() == id) {
+                empToEdit = emp;
+                break;
+            }
+        }
+    }
+
+    if (empToEdit != null) {
+%>
+
+    <h2>Edit Employee</h2>
+    <form method="post">
+        <input type="hidden" name="id" value="<%= empToEdit.getId() %>">
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="<%= empToEdit.getName() %>" required><br><br>
+
+        <label for="department">Department:</label>
+        <input type="text" name="department" value="<%= empToEdit.getDepartment() %>" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="<%= empToEdit.getEmail() %>" required><br><br>
+
+        <label for="salary">Salary:</label>
+        <input type="number" name="salary" value="<%= empToEdit.getSalary() %>" required><br><br>
+
+        <button type="submit">Update</button>
+    </form>
+
+<%
+    }
+%>
+
+<%
+    String method = request.getMethod();
+    if ("POST".equalsIgnoreCase(method)) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String dept = request.getParameter("department");
+        String email = request.getParameter("email");
+        double salary = Double.parseDouble(request.getParameter("salary"));
+
+        Employee updatedEmp = new Employee(id, name, dept, email, salary);
+        Services.updateEmployee(updatedEmp);
+        response.sendRedirect("view.jsp");
+    }
+%>
+
+<br>
+<a href="index.jsp">Back to Home</a>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+127.0.0.1 - - [19/Aug/2025:08:12:42 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [19/Aug/2025:08:12:44 +0530] "GET /24-JSP/Discount%20Calculator.jsp HTTP/1.1" 200 221
+0:0:0:0:0:0:0:1 - - [19/Aug/2025:08:12:44 +0530] "GET /favicon.ico HTTP/1.1" 404 762
+0:0:0:0:0:0:0:1 - - [19/Aug/2025:08:16:22 +0530] "GET /24-JSP/Interest%20Calculation.jsp HTTP/1.1" 200 173
+0:0:0:0:0:0:0:1 - - [19/Aug/2025:08:18:16 +0530] "GET /24-JSP/Grading%20System.jsp HTTP/1.1" 200 177
+0:0:0:0:0:0:0:1 - - [19/Aug/2025:08:24:41 +0530] "GET /24-JSP/Factorial%20Calculator.jsp HTTP/1.1" 200 175
+0:0:0:0:0:0:0:1 - - [19/Aug/2025:08:24:59 +0530] "GET /24-JSP/Factorial%20Calculator.jsp HTTP/1.1" 200 174
+0:0:0:0:0:0:0:1 - - [19/Aug/2025:08:26:38 +0530] "GET /24-JSP/Student%20Grade.jsp HTTP/1.1" 200 162
+0:0:0:0:0:0:0:1 - - [19/Aug/2025:08:33:24 +0530] "GET /24-JSP/Temperature%20Converter.jsp HTTP/1.1" 200 265
+0:0:0:0:0:0:0:1 - - [19/Aug/2025:08:37:28 +0530] "GET /24-JSP/Student%20Report%20Card%20System.jsp HTTP/1.1" 200 660
+0:0:0:0:0:0:0:1 - - [19/Aug/2025:08:40:06 +0530] "GET /24-JSP/Student%20Report%20Card%20System.jsp HTTP/1.1" 200 1508
+127.0.0.1 - - [19/Aug/2025:13:08:19 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [19/Aug/2025:13:08:19 +0530] "GET /24-JSP/Student%20Report%20Card%20System.jsp HTTP/1.1" 200 1508
+0:0:0:0:0:0:0:1 - - [19/Aug/2025:13:08:19 +0530] "GET /favicon.ico HTTP/1.1" 404 762

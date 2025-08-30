@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ page contentType="text/html" errorPage="error.jsp" %>
+    <jsp:useBean id="student" class="com.model.Student" scope="session"/>
+<jsp:setProperty name="student" property="*"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Profile</title>
+</head>
+<body>
+    <jsp:include page="header.jsp"/>
+
+    <h3>Student Profile</h3>
+    Name: <jsp:getProperty name="student" property="name"/><br>
+    Roll No: <jsp:getProperty name="student" property="rollNo"/><br>
+    Marks: <jsp:getProperty name="student" property="marks"/><br><br>
+
+    <jsp:forward page="result.jsp">
+        <jsp:param name="marks" value="<%= student.getMarks() %>"/>
+    </jsp:forward>
+
+    <jsp:include page="footer.jsp"/>
+</body>
+</html>

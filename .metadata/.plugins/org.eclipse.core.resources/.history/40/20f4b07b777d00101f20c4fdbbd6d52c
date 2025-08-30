@@ -1,0 +1,85 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Result</title>
+</head>
+<body>
+    <jsp:include page="header.jsp"/>
+
+    <h3>Final Report Card</h3>
+
+    <%
+        String name = request.getParameter("name");
+        String rollNo = request.getParameter("rollNo");
+        int math = Integer.parseInt(request.getParameter("math"));
+        int science = Integer.parseInt(request.getParameter("science"));
+        int english = Integer.parseInt(request.getParameter("english"));
+
+        int total = math + science + english;
+        double avg = total / 3.0;
+        double percentage = (total / 300.0) * 100;
+
+        String result;
+        if (math < 35 || science < 35 || english < 35) {
+            result = "Fail";
+        } else if (avg >= 90) {
+            result = "A+";
+        } else if (avg >= 80) {
+            result = "A";
+        } else if (avg >= 70) {
+            result = "B";
+        } else if (avg >= 60) {
+            result = "C";
+        } else {
+            result = "Fail";
+        }
+    %>
+
+    <p><strong>Name:</strong> <%= name %></p>
+    <p><strong>Roll No:</strong> <%= rollNo %></p>
+
+    <!-- Marks Table -->
+    <h3>Marks Obtained</h3>
+    <table>
+        <tr>
+            <th>Subject</th>
+            <th>Marks</th>
+        </tr>
+        <tr><td>Math</td><td><%= math %></td></tr>
+        <tr><td>Science</td><td><%= science %></td></tr>
+        <tr><td>English</td><td><%= english %></td></tr>
+    </table>
+
+    <!-- Result Summary Table -->
+    <h3>Result Summary</h3>
+    <table class="result-table">
+        <tr>
+            <th>Total Marks (300)</th>
+            <th>Average</th>
+            <th>Percentage</th>
+            <th>Final Result</th>
+        </tr>
+        <tr>
+            <td><%= total %></td>
+            <td><%= String.format("%.2f", avg) %></td>
+            <td><%= String.format("%.2f", percentage) %> %</td>
+            <td class="<%= result.equals("Fail") ? "status-fail" : "status-pass" %>">
+                <%= result %>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Back Button -->
+    <div style="text-align:center; margin-top:20px;">
+        <form action="index.jsp" method="get">
+            <input type="submit" value="Enter Marks Again" 
+                   style="background:#e67e22; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer;">
+        </form>
+    </div>
+
+    <jsp:include page="footer.jsp"/>
+</body>
+</html>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.techlabs.Banking.model.AmountManager&apos; to &apos;AccountManager&apos;&#x0D;&#x0A;- Original project: &apos;21-JDBC&apos;&#x0D;&#x0A;- Original element: &apos;com.techlabs.Banking.model.AmountManager&apos;&#x0D;&#x0A;- Renamed element: &apos;com.techlabs.Banking.model.AccountManager&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;AmountManager&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.techlabs.Banking.model{AmountManager.java[AmountManager" matchStrategy="1" name="AccountManager" qualified="false" references="true" similarDeclarations="false" stamp="1753514389606" textual="false" version="1.0"/>
+</session>

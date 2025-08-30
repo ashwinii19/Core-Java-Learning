@@ -1,0 +1,22 @@
+1752485628646	Rename package 'com.techlabs.SRP.model'
+1752485638902	Rename package 'com.techlabs.SRP.test'
+1752489928390	Rename package 'com.techlabs.OCP.model'
+1752489941202	Rename package 'com.techlabs.OCP.test'
+1752571468061	Rename type 'IBankDeposit'
+1752571516503	Rename type 'IBankWithdraw'
+1752571595543	Rename type 'IBankAccount'
+1752571607971	Rename type 'IBankFixedDepositAccount'
+1752571710404	Delete element
+1752574707286	Delete element
+1752633721320	Rename type 'ValuationStrategy'
+1752634023701	Rename compilation unit 'FIFO.java'
+1752643350210	Rename type 'Ibird'
+1752643387328	Delete element
+1752648080743	Delete element
+1752648086380	Delete element
+1752721511844	Delete element
+1752724048754	Delete element
+1752803317132	Rename package 'com.techlabs.DesignPattern.model'
+1752803332692	Rename package 'com.techlabs.DesignPattern.test'
+1752803493533	Move compilation unit
+1752803502780	Delete element

@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+    <%@page import="com.techlabs.EMS.db.Services, com.techlabs.EMS.model.Employee" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Create Employee</title>
+  <style>
+  body {
+    background-color: #2c3e50; 
+    color: #ecf0f1; 
+    font-family: Arial, sans-serif;
+  }
+</style>
+</head>
+<body>
+	 <h2>Add New Employee</h2>
+
+    <form method="post">
+        <label for="name">Employee Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department" required>
+        <br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+
+        <label for="salary">Salary:</label>
+        <input type="number" id="salary" name="salary" required>
+        <br><br>
+
+        <button type="submit">Add Employee</button>
+    </form>
+
+    <br>
+  <a href="index.jsp" style="color: white;">Back to Home</a>
+  
+    
+
+    <%
+        String name = request.getParameter("name");
+        String dept = request.getParameter("department");
+        String email = request.getParameter("email");
+        String salaryStr = request.getParameter("salary");
+        
+        double salary=0.0;
+        
+        if(salaryStr!=null && !salaryStr.trim().isEmpty()){
+        	  salary = Double.parseDouble(salaryStr);
+        }
+       
+       Services.insertEmployee(new Employee(name,dept,email,salary));
+      %>
+</body>
+</html>

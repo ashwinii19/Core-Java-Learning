@@ -1,0 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="com.techlabs.EMS.db.Services, com.techlabs.EMS.model.Employee" %>
+<%
+    String idStr = request.getParameter("id");
+    if (idStr != null) {
+        int id = Integer.parseInt(idStr);
+        Employee emp = new Employee(id, "", "", "", 0);
+        Services.deleteEmployee(emp);
+    }
+    response.sendRedirect("view.jsp");
+%>
+s
